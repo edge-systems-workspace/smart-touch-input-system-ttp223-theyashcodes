@@ -1,44 +1,31 @@
-#include <Arduino.h>
 /**
- * @file main.ino
- * @brief Embedded Touch Detection System using TTP223
- * @author YOUR_NAME
- * @date YYYY-MM-DD
- *
- * @details
- * Reads digital touch input from TTP223 sensor
- * and displays structured output via Serial Monitor.
+* @file main.cpp
+ * @brief Touch Sensor (TTP223) interfacing
+ * @author Yash Gupta
+ * @date 2026-02-20
  */
 
- // TODO 1:
- // Define touch sensor digital pin (Use pin 2)
+#include <Arduino.h>
 
- // TODO 2:
- // Create variable to store touch state
+const int touchPin = 7;
+const int ledPin = 13;
 
 void setup() {
-
-    // TODO 3:
-    // Initialize Serial communication (9600 baud rate)
-
-    // TODO 4:
-    // Configure touch pin as INPUT
-
-    // TODO 5:
-    // Print system initialization message
+    pinMode(touchPin, INPUT);
+    pinMode(ledPin, OUTPUT);
+    Serial.begin(9600);
 }
 
 void loop() {
+    int touchState = digitalRead(touchPin);
 
-    // TODO 6:
-    // Read digital value from touch sensor
+    if (touchState == HIGH) {
+        digitalWrite(ledPin, HIGH);
+        Serial.println("Touched !!!");
+    } else {
+        digitalWrite(ledPin, LOW);
+        Serial.println("Not Touched !!!");
+    }
 
-    // TODO 7:
-    // If touch detected (HIGH)
-    //     Print "Touch Detected"
-    // Else
-    //     Print "No Touch"
-
-    // TODO 8:
-    // Add small delay (200–500ms)
+    delay(200);
 }
